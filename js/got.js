@@ -25,7 +25,9 @@ function successAjax(xhttp) {
     //az élők;
     var alive = livingCharacters(userDatas);
     var sorted = sortByName(alive);
-    console.log(sorted);
+    var searchedName = searchByName(userDatas, "ned stark")
+    console.log(searchedName);
+
 }
 
 function livingCharacters(characters) {
@@ -72,6 +74,21 @@ function sortByName(characters) {
     }
     return rendezetTomb;*/
 
+}
+
+function searchByName(dataArray, name) {
+    //külön változók feleslegesek, mert csak duplikálom őket
+    var keresettNev = name.toLowerCase();
+    var keresesHelye = dataArray;
+    var eredmeny = [];
+    var nincsEredmeny = 'Nincs ilyen nevű szereplő.'
+    for (let i = 0; i < keresesHelye.length; i++) {
+        if (keresesHelye[i].name.toLowerCase() === keresettNev) {
+            eredmeny = keresesHelye[i];
+            return eredmeny;
+        }
+    }
+    return nincsEredmeny;
 }
 // Írd be a json fileod nevét/útvonalát úgy, ahogy nálad van
 getData('/json/characters.json', successAjax);
