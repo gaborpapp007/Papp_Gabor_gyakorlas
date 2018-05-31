@@ -12,7 +12,7 @@ function getData(url, callbackFunc) {
 function successAjax(xhttp) {
     // itt a json content, benne a data változóban
     var userDatas = JSON.parse(xhttp.responseText);
-    console.log(userDatas);
+    //console.log(userDatas);
     /*
       Pár sorral lejebb majd ezt olvashatod:
       IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ!
@@ -22,10 +22,20 @@ function successAjax(xhttp) {
       A userDatas NEM GLOBÁLIS változó, ne is tegyétek ki globálisra. Azaz TILOS!
       Ha valemelyik függvényeteknek kell, akkor paraméterként adjátok át.
     */
+    console.log(livingCharacters(userDatas));
 }
 
+function livingCharacters(characters) {
+    var live = [];
+    for (var i in characters) {
+        if (!characters[i].dead) {
+            live.push(characters[i]);
+        }
+    }
+    return live;
+}
 // Írd be a json fileod nevét/útvonalát úgy, ahogy nálad van
-getData('/json/aJsonFileodNeve.json', successAjax);
+getData('/json/characters.json', successAjax);
 
 // Live servert használd mindig!!!!!
 /* IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ! */
